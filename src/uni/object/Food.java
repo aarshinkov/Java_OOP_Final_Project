@@ -3,10 +3,12 @@ package uni.object;
 import uni.frame.CFrame;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Food implements IShowStepable {
+    private String type;
     private int indexOfStep;
     private ArrayList<String> stepList;
     private ArrayList<String> ingredientsList;
@@ -24,6 +26,7 @@ public abstract class Food implements IShowStepable {
     @Override
     public void showStep() {
         String step = stepList.get(0);
+        setImageOnLabel(1);
         CFrame.getInstructionLabel().setText("1. " + step);
         CFrame.getSortDefaultMenuItem().setSelected(true);
         CFrame.getBackButton().setEnabled(false);
@@ -32,6 +35,24 @@ public abstract class Food implements IShowStepable {
         CFrame.getSortIngrAccMenuItem().setEnabled(true);
         CFrame.getSortIngrDescMenuItem().setEnabled(true);
         CFrame.getSortDefaultMenuItem().setEnabled(true);
+    }
+
+    private void setImageOnLabel(int fileName) {
+        JLabel instructionImage = CFrame.getInstructionImage();
+        int imageLabelHeight = instructionImage.getHeight();
+
+        this.type = this.getClass().getSimpleName().toLowerCase();
+        ImageIcon image = new ImageIcon(getClass().getResource("/steps/" + type + "/" + fileName + ".jpg"));
+
+        int originalHeight = image.getIconHeight();
+        int originalWidth = image.getIconWidth();
+        double ratio = (double)originalWidth / (double)originalHeight;
+
+        int width = (int)(ratio * imageLabelHeight);
+
+        image.setImage(image.getImage().getScaledInstance(width, imageLabelHeight, Image.SCALE_SMOOTH));
+        instructionImage.setText("");
+        instructionImage.setIcon(image);
     }
 
     @Override
@@ -43,6 +64,7 @@ public abstract class Food implements IShowStepable {
         }
         indexOfStep++;
         setStepLabelText();
+        setImageOnLabel(indexOfStep + 1);
     }
 
     @Override
@@ -54,6 +76,7 @@ public abstract class Food implements IShowStepable {
         }
         indexOfStep--;
         setStepLabelText();
+        setImageOnLabel(indexOfStep + 1);
     }
 
     @Override

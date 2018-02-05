@@ -332,6 +332,7 @@ public class CFrame extends JFrame {
         }
     }
 
+    //TODO implement addNewRecipe()
     private class addNewRecipe implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -339,6 +340,7 @@ public class CFrame extends JFrame {
         }
     }
 
+    //TODO implement chooseOtherRecipe
     private class chooseOtherRecipe implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -361,6 +363,10 @@ public class CFrame extends JFrame {
 
     public static JLabel getInstructionLabel() {
         return instructionLabel;
+    }
+
+    public static JLabel getInstructionImage() {
+        return instructionImage;
     }
 
     public static JMenuItem getSortIngrAccMenuItem() {

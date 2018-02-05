@@ -16,7 +16,7 @@ public class Salad extends Food {
         tempList.add("Wash the vegetables");
         tempList.add("Peel the vegetables");
         tempList.add("Cut the vegetables");
-        tempList.add("Stir the feta cheese");
+        tempList.add("Grate the feta cheese");
         tempList.add("Add salt, cooking oil and vinegar");
         tempList.add("Serve with rakia!");
 
