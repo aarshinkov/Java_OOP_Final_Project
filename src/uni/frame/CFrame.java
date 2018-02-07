@@ -71,7 +71,6 @@ public class CFrame extends JFrame {
         this.setLayout(new BorderLayout());
 
         createMenuBar();
-
         createMainPanel();
         createUpPanel();
         createDownPanel();
@@ -229,10 +228,10 @@ public class CFrame extends JFrame {
         firstPanel.setLayout(new GridLayout(1, 2, 200, 200));
 
         firstPanel.add(saladButton);
-        createRecipeButton(saladButton, saladBImage, saladBText, "salad.jpg", "Salad");
+        createFoodButton(saladButton, saladBImage, saladBText, "salad.jpg", "Salad");
 
         firstPanel.add(friesButton);
-        createRecipeButton(friesButton, friesBImage, friesBText, "fries.jpg", "Fries");
+        createFoodButton(friesButton, friesBImage, friesBText, "fries.jpg", "Fries");
     }
 
     private void createSecondPanel() {
@@ -251,22 +250,28 @@ public class CFrame extends JFrame {
         nextButton.setEnabled(false);
     }
 
-    private void createRecipeButton(JPanel recipeButton, JPanel recipeImagePanel, JLabel recipeTextLabel, String imageResource, String recipeName) {
+    private void createFoodButton(JPanel recipeButton, JPanel recipeImagePanel, JLabel recipeTextLabel, String imageResource, String recipeName) {
+        //Button
         recipeButton.setLayout(new BorderLayout());
         recipeButton.setBorder(BorderFactory.createLineBorder(new Color(142, 142, 142)));
+
+        //Adding image and text panels
         recipeButton.add(recipeImagePanel, BorderLayout.CENTER);
         recipeButton.add(recipeTextLabel, BorderLayout.SOUTH);
+
+        //Text under image
         recipeTextLabel.setText(recipeName);
         recipeTextLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
+        //Food image
         recipeImagePanel.setBounds(0, 0, 175, 110);
         recipeImagePanel.setBorder(BorderFactory.createEmptyBorder(-5,0,0,0));
 
+        //Setting image to panel
         ImageIcon image = new ImageIcon(getClass().getResource("/img/" + imageResource));
         image.setImage(image.getImage().getScaledInstance(saladBImage.getWidth(), saladBImage.getHeight(), Image.SCALE_SMOOTH));
         recipeImagePanel.add(new JLabel(image));
     }
-
 
     private class backStepAction implements ActionListener {
         @Override
@@ -347,7 +352,6 @@ public class CFrame extends JFrame {
             System.out.println("Other recipes chosen");
         }
     }
-
 
     public static JButton getBackButton() {
         return backButton;

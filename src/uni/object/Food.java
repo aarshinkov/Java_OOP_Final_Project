@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public abstract class Food implements IShowStepable {
-    private String type;
     private int indexOfStep;
     private ArrayList<String> stepList;
     private ArrayList<String> ingredientsList;
@@ -41,7 +40,7 @@ public abstract class Food implements IShowStepable {
         JLabel instructionImage = CFrame.getInstructionImage();
         int imageLabelHeight = instructionImage.getHeight();
 
-        this.type = this.getClass().getSimpleName().toLowerCase();
+        String type = this.getClass().getSimpleName().toLowerCase();
         ImageIcon image = new ImageIcon(getClass().getResource("/steps/" + type + "/" + fileName + ".jpg"));
 
         int originalHeight = image.getIconHeight();
